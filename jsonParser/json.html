@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8" />
+    <title>JsonParser By Q.R</title>
+</head>
+
+<body>
+    <textarea name="InputArea" id="json_in"
+        style="font-family: Verdana; font-size: 16; width: 30%; height: 30%; position: absolute; left: 15%; border-radius: 10px; border-width: 2px; padding-top: 15px; padding-left: 15px;">
+JSON输入</textarea>
+    <button type="button" style="position: absolute; left: 15%; top: 38%;" onclick="parse()">
+        格式化
+    </button>
+    <div id="json_out"
+        style="font-family: Verdana; font-size: 16; width: 30%; height: 30%; position: absolute; left: 15%; top: 50%; border-radius: 10px; border-width: 2px; padding-top: 15px; padding-left: 15px; border: 1px solid black">
+        JSON输出
+    </div>
+    <button type="button" style="position: absolute; left: 15%; top: 42%;" onclick="cpy()">
+        复制
+    </button>
+
+    <script language="javascript">
+        function parse() {
+            var unjson = document.getElementById("json_in").value;
+            try {
+                var jsonboj = JSON.parse(unjson);
+                var jsoned = JSON.stringify(jsonboj, null, '\t');
+                var parserow = jsoned.replace(new RegExp(/\n/g), '<br>');
+                var pasespace = parserow.replace(new RegExp(/\t/g), '&nbsp&nbsp&nbsp&nbsp');
+                document.getElementById("json_out").innerHTML = pasespace;
+
+            } catch {
+                document.getElementById("json_out").innerHTML = "Json Syntax Error!";
+            }
+        }
+        function cpy() {
+            var range = document.createRange();
+            range.selectNodeContents(document.getElementById("json_out"));
+            var selection = document.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("Copy");
+        }
+    </script>
+</body>
+
+</html>
