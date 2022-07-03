@@ -5,4 +5,4 @@ Some basic codes written by myself
 ## Storage
 这个文件夹下面的东西是以前写的，就让它们躺在那里吧
 ## LeetCode
-没错，是时候开始刷题了
+刷题
